@@ -1,7 +1,6 @@
 import enum
 import itertools
 from colorama import Fore, Back, Style, init
-
 init()
 
 def game_board(game_map, player=0, row=0, column=0, just_display=False): # ileride fonksiyonu girdi olmadan çağırabilmek için  =0 şeklinde varsayılan değerler atandı
@@ -34,20 +33,26 @@ def game_board(game_map, player=0, row=0, column=0, just_display=False): # ileri
         print("Something went very wrong!", e)
         return game_map, False
 
-x = game_board # fonksiyon isminden sonra () kullanılmadığında fonksiyona
-# pointer atanmış olunuyor ve fonksiyon çağırılmış/çalıştırılmış olunmuyor
-
 def all_same(list):
     won = False
     if list.count(list[0]) == len(list) and list[0] != 0:
         won = True
     return won
 
+def winner(list):
+    winner = ""
+    if list[0] == 1:
+        winner += Back.GREEN + ' X ' + Style.RESET_ALL
+    elif list[0] == 2:
+        winner += Back.MAGENTA + ' O ' + Style.RESET_ALL
+    return winner
+
 def win(current_game):
+
 # win_game_horizontally(current_game):
-    for row in game:
+    for row in current_game:
         if all_same(row):
-            print(f"Player {row[0]} is the winner horizontally (-) !")
+            print(f"Player {winner(row)} is the winner horizontally (-) !")
             return True
 
 # win_game_vertically(current_game):
@@ -58,7 +63,7 @@ def win(current_game):
             column.append(row[col])
     
         if all_same(column):
-            print(f"Player {column[0]} is the winner vertically (|) !")
+            print(f"Player {winner(column)} is the winner vertically (|) !")
             return True
 
 # win_game_diagonally_uldr(current_game):
@@ -68,7 +73,7 @@ def win(current_game):
         diagonals.append(current_game[lr][lr])
 
     if all_same(diagonals):
-        print(f"Player {diagonals[0]} is the winner diagonally (\\) !")
+        print(f"Player {winner(diagonals)} is the winner diagonally (\\) !")
         return True
     
 # win_game_diagonally_urdl(current_game):
@@ -80,7 +85,7 @@ def win(current_game):
         diagonals.append(current_game[len(rows)-rl-1][rl])
 
     if all_same(diagonals):
-        print(f"Player {diagonals[0]} is the winner diagonally (/) !")
+        print(f"Player {winner(diagonals)} is the winner diagonally (/) !")
         return True
 
     return False
@@ -98,7 +103,12 @@ while play:
     player_choice = itertools.cycle([1, 2])
     while not game_won:
         current_player = next(player_choice)
-        print(f"Current Player: {current_player}")
+        colored_player = ""
+        if current_player == 1:
+            colored_player += Back.GREEN + ' X ' + Style.RESET_ALL
+        elif current_player == 2:
+            colored_player += Back.MAGENTA + ' O ' + Style.RESET_ALL
+        print(f"Current Player: {colored_player}")
 
         played = False
         while not played:
