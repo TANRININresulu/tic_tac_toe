@@ -6,3 +6,7 @@ You can install colorama with:
 pip install colorama
 
 command from terminal after installing python
+
+run with
+
+python TicTacToe.py
