@@ -118,5 +118,5 @@ while play:
                 print("Selam!")
                 play = False
             else:
-                print("Not a valid answer, so... c u l8r aligator")
+                print("Not a valid answer, so... c u l8r alligator")
                 play = False
