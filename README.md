@@ -3,10 +3,8 @@ Colorama dependent n-size TicTacToe Game written in Python
 
 You can install colorama with:
 
-pip install colorama
+```pip install colorama```
 
-command from terminal after installing python
+IF GOD gives permission you can run it with command from terminal after installing python:
 
-run with
-
-python TicTacToe.py
+```python TicTacToe.py```
